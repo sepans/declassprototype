@@ -1,0 +1,1867 @@
+{
+    "country_data": [
+        {
+            "doc_count": 61495,
+            "id": "840",
+            "name": "US"
+        },
+        {
+            "doc_count": 26914,
+            "id": "810",
+            "name": "USSR"
+        },
+        {
+            "doc_count": 21620,
+            "id": "826",
+            "name": "UK"
+        },
+        {
+            "doc_count": 19934,
+            "id": "250",
+            "name": "France"
+        },
+        {
+            "doc_count": 13577,
+            "id": "704",
+            "name": "Vietnam"
+        },
+        {
+            "doc_count": 13141,
+            "id": "156",
+            "name": "China"
+        },
+        {
+            "doc_count": 7632,
+            "id": "376",
+            "name": "Israel"
+        },
+        {
+            "doc_count": 6977,
+            "id": "356",
+            "name": "India"
+        },
+        {
+            "doc_count": 6790,
+            "id": "392",
+            "name": "Japan"
+        },
+        {
+            "doc_count": 6761,
+            "id": "818",
+            "name": "Egypt"
+        }
+    ],
+    "topic_data": [
+        {
+            "average_score": 0.091969780759572101,
+            "id": 88,
+            "doc_count": 8197,
+            "title": "{israeli, palestinian, oil}"
+        },
+        {
+            "average_score": 0.079056081787769517,
+            "id": 64,
+            "doc_count": 2855,
+            "title": "{india, indian, afghanistan}"
+        },
+        {
+            "average_score": 0.07495575925903418,
+            "id": 93,
+            "doc_count": 2354,
+            "title": "{recommendation, credit, stand}"
+        },
+        {
+            "average_score": 0.069580936254050207,
+            "id": 5,
+            "doc_count": 3469,
+            "title": "{cuban, cuba, package}"
+        },
+        {
+            "average_score": 0.068516658731408206,
+            "id": 9,
+            "doc_count": 2470,
+            "title": "{office, yugoslav, indonesia}"
+        },
+        {
+            "average_score": 0.065277577107222373,
+            "id": 40,
+            "doc_count": 2168,
+            "title": "{intelligence, poor, philippine}"
+        },
+        {
+            "average_score": 0.064552611380455358,
+            "id": 83,
+            "doc_count": 3310,
+            "title": "{pakistan, chou, page}"
+        },
+        {
+            "average_score": 0.064255555967734079,
+            "id": 63,
+            "doc_count": 3051,
+            "title": "{export, sale, import}"
+        },
+        {
+            "average_score": 0.063553695994486223,
+            "id": 10,
+            "doc_count": 3664,
+            "title": "{latin, amendment, paragraph}"
+        },
+        {
+            "average_score": 0.063263118035944879,
+            "id": 35,
+            "doc_count": 2442,
+            "title": "{japanese, loan, finance}"
+        }
+    ],
+    "date_data": [
+   
+        {
+            "doc_count": 820,
+            "month": "1954-05"
+        },
+        {
+            "doc_count": 748,
+            "month": "1954-06"
+        },
+        {
+            "doc_count": 701,
+            "month": "1954-07"
+        },
+        {
+            "doc_count": 615,
+            "month": "1954-04"
+        },
+        {
+            "doc_count": 510,
+            "month": "1954-09"
+        },
+        {
+            "doc_count": 459,
+            "month": "1954-03"
+        },
+        {
+            "doc_count": 449,
+            "month": "1954-12"
+        },
+        {
+            "doc_count": 426,
+            "month": "1954-02"
+        },
+        {
+            "doc_count": 425,
+            "month": "1953-07"
+        },
+        {
+            "doc_count": 425,
+            "month": "1954-08"
+        },
+        {
+            "doc_count": 418,
+            "month": "1954-10"
+        },
+        {
+            "doc_count": 418,
+            "month": "1967-06"
+        },
+        {
+            "doc_count": 394,
+            "month": "1954-11"
+        },
+        {
+            "doc_count": 393,
+            "month": "1953-03"
+        },
+        {
+            "doc_count": 391,
+            "month": "1956-11"
+        },
+        {
+            "doc_count": 389,
+            "month": "1952-02"
+        },
+        {
+            "doc_count": 388,
+            "month": "1953-09"
+        },
+        {
+            "doc_count": 381,
+            "month": "1953-10"
+        },
+        {
+            "doc_count": 378,
+            "month": "1953-05"
+        },
+        {
+            "doc_count": 373,
+            "month": "1954-01"
+        },
+        {
+            "doc_count": 359,
+            "month": "1953-06"
+        },
+        {
+            "doc_count": 346,
+            "month": "1953-04"
+        },
+        {
+            "doc_count": 344,
+            "month": "1955-11"
+        },
+        {
+            "doc_count": 342,
+            "month": "1972-05"
+        },
+        {
+            "doc_count": 340,
+            "month": "1956-10"
+        },
+        {
+            "doc_count": 336,
+            "month": "1952-05"
+        },
+        {
+            "doc_count": 336,
+            "month": "1958-07"
+        },
+        {
+            "doc_count": 326,
+            "month": "1962-10"
+        },
+        {
+            "doc_count": 322,
+            "month": "1971-12"
+        },
+        {
+            "doc_count": 319,
+            "month": "1953-12"
+        },
+        {
+            "doc_count": 315,
+            "month": "1955-05"
+        },
+        {
+            "doc_count": 314,
+            "month": "1953-02"
+        },
+        {
+            "doc_count": 308,
+            "month": "1955-07"
+        },
+        {
+            "doc_count": 306,
+            "month": "1952-10"
+        },
+        {
+            "doc_count": 305,
+            "month": "1952-09"
+        },
+        {
+            "doc_count": 305,
+            "month": "1953-11"
+        },
+        {
+            "doc_count": 304,
+            "month": "1953-08"
+        },
+        {
+            "doc_count": 301,
+            "month": "1957-03"
+        },
+        {
+            "doc_count": 300,
+            "month": "1955-04"
+        },
+        {
+            "doc_count": 299,
+            "month": "1952-01"
+        },
+        {
+            "doc_count": 298,
+            "month": "1970-09"
+        },
+        {
+            "doc_count": 297,
+            "month": "1962-03"
+        },
+        {
+            "doc_count": 297,
+            "month": "1952-06"
+        },
+        {
+            "doc_count": 297,
+            "month": "1968-10"
+        },
+        {
+            "doc_count": 296,
+            "month": "1967-05"
+        },
+        {
+            "doc_count": 293,
+            "month": "1955-12"
+        },
+        {
+            "doc_count": 293,
+            "month": "1955-03"
+        },
+        {
+            "doc_count": 293,
+            "month": "1956-03"
+        },
+        {
+            "doc_count": 293,
+            "month": "1961-11"
+        },
+        {
+            "doc_count": 288,
+            "month": "1973-10"
+        },
+        {
+            "doc_count": 288,
+            "month": "1952-07"
+        },
+        {
+            "doc_count": 288,
+            "month": "1952-11"
+        },
+        {
+            "doc_count": 288,
+            "month": "1956-07"
+        },
+        {
+            "doc_count": 284,
+            "month": "1964-06"
+        },
+        {
+            "doc_count": 284,
+            "month": "1962-11"
+        },
+        {
+            "doc_count": 281,
+            "month": "1964-08"
+        },
+        {
+            "doc_count": 281,
+            "month": "1952-03"
+        },
+        {
+            "doc_count": 279,
+            "month": "1962-01"
+        },
+        {
+            "doc_count": 278,
+            "month": "1962-05"
+        },
+        {
+            "doc_count": 276,
+            "month": "1957-05"
+        },
+        {
+            "doc_count": 274,
+            "month": "1955-01"
+        },
+        {
+            "doc_count": 274,
+            "month": "1964-03"
+        },
+        {
+            "doc_count": 273,
+            "month": "1961-10"
+        },
+        {
+            "doc_count": 273,
+            "month": "1955-09"
+        },
+        {
+            "doc_count": 272,
+            "month": "1952-04"
+        },
+        {
+            "doc_count": 269,
+            "month": "1961-04"
+        },
+        {
+            "doc_count": 268,
+            "month": "1957-02"
+        },
+        {
+            "doc_count": 267,
+            "month": "1965-02"
+        },
+        {
+            "doc_count": 266,
+            "month": "1956-08"
+        },
+        {
+            "doc_count": 265,
+            "month": "1961-05"
+        },
+        {
+            "doc_count": 264,
+            "month": "1972-04"
+        },
+        {
+            "doc_count": 263,
+            "month": "1955-10"
+        },
+        {
+            "doc_count": 263,
+            "month": "1958-06"
+        },
+        {
+            "doc_count": 261,
+            "month": "1956-04"
+        },
+        {
+            "doc_count": 261,
+            "month": "1963-10"
+        },
+        {
+            "doc_count": 260,
+            "month": "1964-04"
+        },
+        {
+            "doc_count": 260,
+            "month": "1962-02"
+        },
+        {
+            "doc_count": 259,
+            "month": "1955-08"
+        },
+        {
+            "doc_count": 259,
+            "month": "1953-01"
+        },
+        {
+            "doc_count": 258,
+            "month": "1957-10"
+        },
+        {
+            "doc_count": 258,
+            "month": "1967-11"
+        },
+        {
+            "doc_count": 258,
+            "month": "1956-05"
+        },
+        {
+            "doc_count": 258,
+            "month": "1963-11"
+        },
+        {
+            "doc_count": 256,
+            "month": "1955-02"
+        },
+        {
+            "doc_count": 256,
+            "month": "1958-10"
+        },
+        {
+            "doc_count": 252,
+            "month": "1964-05"
+        },
+        {
+            "doc_count": 250,
+            "month": "1956-12"
+        },
+        {
+            "doc_count": 250,
+            "month": "1952-12"
+        },
+        {
+            "doc_count": 249,
+            "month": "1958-09"
+        },
+        {
+            "doc_count": 249,
+            "month": "1961-09"
+        },
+        {
+            "doc_count": 249,
+            "month": "1968-02"
+        },
+        {
+            "doc_count": 248,
+            "month": "1962-04"
+        },
+        {
+            "doc_count": 248,
+            "month": "1952-08"
+        },
+        {
+            "doc_count": 247,
+            "month": "1962-12"
+        },
+        {
+            "doc_count": 246,
+            "month": "1961-12"
+        },
+        {
+            "doc_count": 244,
+            "month": "1962-06"
+        },
+        {
+            "doc_count": 243,
+            "month": "1956-02"
+        },
+        {
+            "doc_count": 243,
+            "month": "1960-09"
+        },
+        {
+            "doc_count": 243,
+            "month": "1968-03"
+        },
+        {
+            "doc_count": 243,
+            "month": "1972-10"
+        },
+        {
+            "doc_count": 242,
+            "month": "1964-12"
+        },
+        {
+            "doc_count": 241,
+            "month": "1965-12"
+        },
+        {
+            "doc_count": 241,
+            "month": "1957-08"
+        },
+        {
+            "doc_count": 240,
+            "month": "1964-01"
+        },
+        {
+            "doc_count": 240,
+            "month": "1963-09"
+        },
+        {
+            "doc_count": 239,
+            "month": "1964-02"
+        },
+        {
+            "doc_count": 239,
+            "month": "1956-09"
+        },
+        {
+            "doc_count": 238,
+            "month": "1971-06"
+        },
+        {
+            "doc_count": 237,
+            "month": "1965-04"
+        },
+        {
+            "doc_count": 237,
+            "month": "1968-11"
+        },
+        {
+            "doc_count": 236,
+            "month": "1956-01"
+        },
+        {
+            "doc_count": 236,
+            "month": "1957-11"
+        },
+        {
+            "doc_count": 234,
+            "month": "1958-08"
+        },
+        {
+            "doc_count": 234,
+            "month": "1958-12"
+        },
+        {
+            "doc_count": 234,
+            "month": "1957-04"
+        },
+        {
+            "doc_count": 234,
+            "month": "1963-08"
+        },
+        {
+            "doc_count": 234,
+            "month": "1958-05"
+        },
+        {
+            "doc_count": 232,
+            "month": "1964-11"
+        },
+        {
+            "doc_count": 232,
+            "month": "1959-07"
+        },
+        {
+            "doc_count": 231,
+            "month": "1967-07"
+        },
+        {
+            "doc_count": 230,
+            "month": "1965-03"
+        },
+        {
+            "doc_count": 230,
+            "month": "1962-07"
+        },
+        {
+            "doc_count": 229,
+            "month": "1961-08"
+        },
+        {
+            "doc_count": 228,
+            "month": "1961-06"
+        },
+        {
+            "doc_count": 227,
+            "month": "1962-09"
+        },
+        {
+            "doc_count": 225,
+            "month": "1955-06"
+        },
+        {
+            "doc_count": 224,
+            "month": "1959-06"
+        },
+        {
+            "doc_count": 223,
+            "month": "1957-12"
+        },
+        {
+            "doc_count": 223,
+            "month": "1961-07"
+        },
+        {
+            "doc_count": 223,
+            "month": "1968-01"
+        },
+        {
+            "doc_count": 222,
+            "month": "1972-12"
+        },
+        {
+            "doc_count": 221,
+            "month": "1963-07"
+        },
+        {
+            "doc_count": 220,
+            "month": "1971-03"
+        },
+        {
+            "doc_count": 220,
+            "month": "1965-05"
+        },
+        {
+            "doc_count": 219,
+            "month": "1958-11"
+        },
+        {
+            "doc_count": 219,
+            "month": "1962-08"
+        },
+        {
+            "doc_count": 219,
+            "month": "1959-03"
+        },
+        {
+            "doc_count": 218,
+            "month": "1965-01"
+        },
+        {
+            "doc_count": 218,
+            "month": "1963-05"
+        },
+        {
+            "doc_count": 218,
+            "month": "1965-06"
+        },
+        {
+            "doc_count": 217,
+            "month": "1965-09"
+        },
+        {
+            "doc_count": 217,
+            "month": "1963-12"
+        },
+        {
+            "doc_count": 217,
+            "month": "1963-04"
+        },
+        {
+            "doc_count": 215,
+            "month": "1972-03"
+        },
+        {
+            "doc_count": 213,
+            "month": "1965-11"
+        },
+        {
+            "doc_count": 212,
+            "month": "1967-12"
+        },
+        {
+            "doc_count": 212,
+            "month": "1957-06"
+        },
+        {
+            "doc_count": 212,
+            "month": "1960-04"
+        },
+        {
+            "doc_count": 211,
+            "month": "1967-08"
+        },
+        {
+            "doc_count": 211,
+            "month": "1969-10"
+        },
+        {
+            "doc_count": 210,
+            "month": "1963-01"
+        },
+        {
+            "doc_count": 210,
+            "month": "1971-07"
+        },
+        {
+            "doc_count": 209,
+            "month": "1960-03"
+        },
+        {
+            "doc_count": 207,
+            "month": "1971-08"
+        },
+        {
+            "doc_count": 206,
+            "month": "1960-05"
+        },
+        {
+            "doc_count": 206,
+            "month": "1960-11"
+        },
+        {
+            "doc_count": 206,
+            "month": "1956-06"
+        },
+        {
+            "doc_count": 206,
+            "month": "1964-07"
+        },
+        {
+            "doc_count": 206,
+            "month": "1964-10"
+        },
+        {
+            "doc_count": 204,
+            "month": "1957-01"
+        },
+        {
+            "doc_count": 204,
+            "month": "1959-04"
+        },
+        {
+            "doc_count": 203,
+            "month": "1967-10"
+        },
+        {
+            "doc_count": 203,
+            "month": "1959-01"
+        },
+        {
+            "doc_count": 202,
+            "month": "1959-05"
+        },
+        {
+            "doc_count": 201,
+            "month": "1963-03"
+        },
+        {
+            "doc_count": 201,
+            "month": "1960-10"
+        },
+        {
+            "doc_count": 200,
+            "month": "1959-12"
+        },
+        {
+            "doc_count": 197,
+            "month": "1967-04"
+        },
+        {
+            "doc_count": 196,
+            "month": "1959-09"
+        },
+        {
+            "doc_count": 196,
+            "month": "1971-04"
+        },
+        {
+            "doc_count": 196,
+            "month": "1958-03"
+        },
+        {
+            "doc_count": 195,
+            "month": "1969-04"
+        },
+        {
+            "doc_count": 194,
+            "month": "1957-07"
+        },
+        {
+            "doc_count": 193,
+            "month": "1966-01"
+        },
+        {
+            "doc_count": 192,
+            "month": "1970-10"
+        },
+        {
+            "doc_count": 191,
+            "month": "1957-09"
+        },
+        {
+            "doc_count": 190,
+            "month": "1970-03"
+        },
+        {
+            "doc_count": 190,
+            "month": "1972-01"
+        },
+        {
+            "doc_count": 190,
+            "month": "1972-02"
+        },
+        {
+            "doc_count": 190,
+            "month": "1966-11"
+        },
+        {
+            "doc_count": 190,
+            "month": "1969-09"
+        },
+        {
+            "doc_count": 189,
+            "month": "1965-10"
+        },
+        {
+            "doc_count": 189,
+            "month": "1971-05"
+        },
+        {
+            "doc_count": 188,
+            "month": "1970-04"
+        },
+        {
+            "doc_count": 188,
+            "month": "1966-07"
+        },
+        {
+            "doc_count": 188,
+            "month": "1971-11"
+        },
+        {
+            "doc_count": 187,
+            "month": "1971-09"
+        },
+        {
+            "doc_count": 186,
+            "month": "1959-10"
+        },
+        {
+            "doc_count": 185,
+            "month": "1960-07"
+        },
+        {
+            "doc_count": 185,
+            "month": "1960-12"
+        },
+        {
+            "doc_count": 184,
+            "month": "1961-03"
+        },
+        {
+            "doc_count": 183,
+            "month": "1965-07"
+        },
+        {
+            "doc_count": 183,
+            "month": "1961-02"
+        },
+        {
+            "doc_count": 182,
+            "month": "1968-04"
+        },
+        {
+            "doc_count": 181,
+            "month": "1963-02"
+        },
+        {
+            "doc_count": 181,
+            "month": "1971-10"
+        },
+        {
+            "doc_count": 179,
+            "month": "1966-10"
+        },
+        {
+            "doc_count": 178,
+            "month": "1966-12"
+        },
+        {
+            "doc_count": 178,
+            "month": "1970-07"
+        },
+        {
+            "doc_count": 177,
+            "month": "1968-05"
+        },
+        {
+            "doc_count": 176,
+            "month": "1966-09"
+        },
+        {
+            "doc_count": 176,
+            "month": "1967-02"
+        },
+        {
+            "doc_count": 176,
+            "month": "1972-09"
+        },
+        {
+            "doc_count": 175,
+            "month": "1959-11"
+        },
+        {
+            "doc_count": 175,
+            "month": "1966-03"
+        },
+        {
+            "doc_count": 174,
+            "month": "1969-12"
+        },
+        {
+            "doc_count": 173,
+            "month": "1963-06"
+        },
+        {
+            "doc_count": 173,
+            "month": "1970-02"
+        },
+        {
+            "doc_count": 171,
+            "month": "1973-01"
+        },
+        {
+            "doc_count": 171,
+            "month": "1968-12"
+        },
+        {
+            "doc_count": 171,
+            "month": "1966-06"
+        },
+        {
+            "doc_count": 171,
+            "month": "1970-01"
+        },
+        {
+            "doc_count": 170,
+            "month": "1968-09"
+        },
+        {
+            "doc_count": 170,
+            "month": "1959-02"
+        },
+        {
+            "doc_count": 169,
+            "month": "1966-05"
+        },
+        {
+            "doc_count": 168,
+            "month": "1970-06"
+        },
+        {
+            "doc_count": 167,
+            "month": "1968-07"
+        },
+        {
+            "doc_count": 164,
+            "month": "1960-08"
+        },
+        {
+            "doc_count": 164,
+            "month": "1969-07"
+        },
+        {
+            "doc_count": 163,
+            "month": "1958-01"
+        },
+        {
+            "doc_count": 163,
+            "month": "1967-01"
+        },
+        {
+            "doc_count": 163,
+            "month": "1972-06"
+        },
+        {
+            "doc_count": 163,
+            "month": "1972-07"
+        },
+        {
+            "doc_count": 162,
+            "month": "1969-02"
+        },
+        {
+            "doc_count": 161,
+            "month": "1969-03"
+        },
+        {
+            "doc_count": 160,
+            "month": "1972-11"
+        },
+        {
+            "doc_count": 160,
+            "month": "1965-08"
+        },
+        {
+            "doc_count": 159,
+            "month": "1968-06"
+        },
+        {
+            "doc_count": 159,
+            "month": "1966-02"
+        },
+        {
+            "doc_count": 158,
+            "month": "1958-02"
+        },
+        {
+            "doc_count": 158,
+            "month": "1964-09"
+        },
+        {
+            "doc_count": 157,
+            "month": "1959-08"
+        },
+        {
+            "doc_count": 157,
+            "month": "1967-09"
+        },
+        {
+            "doc_count": 157,
+            "month": "1970-12"
+        },
+        {
+            "doc_count": 156,
+            "month": "1967-03"
+        },
+        {
+            "doc_count": 154,
+            "month": "1960-06"
+        },
+        {
+            "doc_count": 153,
+            "month": "1968-08"
+        },
+        {
+            "doc_count": 153,
+            "month": "1960-02"
+        },
+        {
+            "doc_count": 152,
+            "month": "1970-05"
+        },
+        {
+            "doc_count": 151,
+            "month": "1969-05"
+        },
+        {
+            "doc_count": 151,
+            "month": "1975-04"
+        },
+        {
+            "doc_count": 150,
+            "month": "1966-08"
+        },
+        {
+            "doc_count": 149,
+            "month": "1958-04"
+        },
+        {
+            "doc_count": 148,
+            "month": "1971-02"
+        },
+        {
+            "doc_count": 148,
+            "month": "1970-08"
+        },
+        {
+            "doc_count": 147,
+            "month": "1961-01"
+        },
+        {
+            "doc_count": 144,
+            "month": "1960-01"
+        },
+        {
+            "doc_count": 138,
+            "month": "1969-11"
+        },
+        {
+            "doc_count": 135,
+            "month": "1974-08"
+        },
+        {
+            "doc_count": 135,
+            "month": "1974-10"
+        },
+        {
+            "doc_count": 135,
+            "month": "1969-01"
+        },
+        {
+            "doc_count": 133,
+            "month": "1972-08"
+        },
+        {
+            "doc_count": 132,
+            "month": "1971-01"
+        },
+        {
+            "doc_count": 132,
+            "month": "1970-11"
+        },
+        {
+            "doc_count": 130,
+            "month": "1975-07"
+        },
+        {
+            "doc_count": 129,
+            "month": "1966-04"
+        },
+        {
+            "doc_count": 129,
+            "month": "1975-05"
+        },
+        {
+            "doc_count": 127,
+            "month": "1973-03"
+        },
+        {
+            "doc_count": 120,
+            "month": "1969-08"
+        },
+        {
+            "doc_count": 120,
+            "month": "1976-12"
+        },
+        {
+            "doc_count": 119,
+            "month": "1975-03"
+        },
+        {
+            "doc_count": 118,
+            "month": "1973-11"
+        },
+        {
+            "doc_count": 117,
+            "month": "1969-06"
+        },
+        {
+            "doc_count": 116,
+            "month": "1973-06"
+        },
+        {
+            "doc_count": 114,
+            "month": "1974-07"
+        },
+        {
+            "doc_count": 110,
+            "month": "1974-11"
+        },
+        {
+            "doc_count": 110,
+            "month": "1976-01"
+        },
+        {
+            "doc_count": 107,
+            "month": "1973-12"
+        },
+        {
+            "doc_count": 107,
+            "month": "1974-05"
+        },
+        {
+            "doc_count": 106,
+            "month": "1975-01"
+        },
+        {
+            "doc_count": 103,
+            "month": "1973-05"
+        },
+        {
+            "doc_count": 102,
+            "month": "1973-02"
+        },
+        {
+            "doc_count": 101,
+            "month": "1975-08"
+        },
+        {
+            "doc_count": 101,
+            "month": "1975-09"
+        },
+        {
+            "doc_count": 100,
+            "month": "1975-02"
+        },
+        {
+            "doc_count": 99,
+            "month": "1975-06"
+        },
+        {
+            "doc_count": 96,
+            "month": "1973-07"
+        },
+        {
+            "doc_count": 92,
+            "month": "1975-10"
+        },
+        {
+            "doc_count": 91,
+            "month": "1974-09"
+        },
+        {
+            "doc_count": 86,
+            "month": "1973-04"
+        },
+        {
+            "doc_count": 86,
+            "month": "1975-12"
+        },
+        {
+            "doc_count": 83,
+            "month": "1976-03"
+        },
+        {
+            "doc_count": 81,
+            "month": "1974-12"
+        },
+        {
+            "doc_count": 80,
+            "month": "1977-08"
+        },
+        {
+            "doc_count": 79,
+            "month": "1976-04"
+        },
+        {
+            "doc_count": 77,
+            "month": "1974-03"
+        },
+        {
+            "doc_count": 77,
+            "month": "1973-08"
+        },
+        {
+            "doc_count": 76,
+            "month": "1978-03"
+        },
+        {
+            "doc_count": 76,
+            "month": "1976-09"
+        },
+        {
+            "doc_count": 76,
+            "month": "1974-06"
+        },
+        {
+            "doc_count": 76,
+            "month": "1978-01"
+        },
+        {
+            "doc_count": 75,
+            "month": "1977-02"
+        },
+        {
+            "doc_count": 74,
+            "month": "1975-11"
+        },
+        {
+            "doc_count": 74,
+            "month": "1977-11"
+        },
+        {
+            "doc_count": 72,
+            "month": "1978-05"
+        },
+        {
+            "doc_count": 68,
+            "month": "1977-09"
+        },
+        {
+            "doc_count": 68,
+            "month": "1978-12"
+        },
+        {
+            "doc_count": 66,
+            "month": "1976-06"
+        },
+        {
+            "doc_count": 66,
+            "month": "1974-01"
+        },
+        {
+            "doc_count": 65,
+            "month": "1977-03"
+        },
+        {
+            "doc_count": 64,
+            "month": "1977-07"
+        },
+        {
+            "doc_count": 64,
+            "month": "1976-02"
+        },
+        {
+            "doc_count": 64,
+            "month": "1978-02"
+        },
+        {
+            "doc_count": 63,
+            "month": "1978-07"
+        },
+        {
+            "doc_count": 63,
+            "month": "1977-10"
+        },
+        {
+            "doc_count": 62,
+            "month": "1974-04"
+        },
+        {
+            "doc_count": 60,
+            "month": "1973-09"
+        },
+        {
+            "doc_count": 60,
+            "month": "1976-07"
+        },
+        {
+            "doc_count": 60,
+            "month": "1976-08"
+        },
+        {
+            "doc_count": 59,
+            "month": "1977-12"
+        },
+        {
+            "doc_count": 58,
+            "month": "1977-06"
+        },
+        {
+            "doc_count": 57,
+            "month": "1976-11"
+        },
+        {
+            "doc_count": 56,
+            "month": "1974-02"
+        },
+        {
+            "doc_count": 51,
+            "month": "1977-04"
+        },
+        {
+            "doc_count": 51,
+            "month": "1976-10"
+        },
+        {
+            "doc_count": 50,
+            "month": "1979-01"
+        },
+        {
+            "doc_count": 49,
+            "month": "1978-06"
+        },
+        {
+            "doc_count": 46,
+            "month": "1976-05"
+        },
+        {
+            "doc_count": 46,
+            "month": "1979-06"
+        },
+        {
+            "doc_count": 45,
+            "month": "1978-09"
+        },
+        {
+            "doc_count": 44,
+            "month": "1978-10"
+        },
+        {
+            "doc_count": 42,
+            "month": "1978-04"
+        },
+        {
+            "doc_count": 41,
+            "month": "1980-01"
+        },
+        {
+            "doc_count": 41,
+            "month": "1979-05"
+        },
+        {
+            "doc_count": 39,
+            "month": "1977-05"
+        },
+        {
+            "doc_count": 38,
+            "month": "1979-02"
+        },
+        {
+            "doc_count": 38,
+            "month": "1978-08"
+        },
+        {
+            "doc_count": 38,
+            "month": "1977-01"
+        },
+        {
+            "doc_count": 38,
+            "month": "1978-11"
+        },
+        {
+            "doc_count": 37,
+            "month": "1979-03"
+        },
+        {
+            "doc_count": 33,
+            "month": "1979-12"
+        },
+        {
+            "doc_count": 33,
+            "month": "1951-07"
+        },
+        {
+            "doc_count": 33,
+            "month": "1979-09"
+        },
+        {
+            "doc_count": 31,
+            "month": "1980-07"
+        },
+        {
+            "doc_count": 30,
+            "month": "1979-04"
+        },
+        {
+            "doc_count": 30,
+            "month": "1980-03"
+        },
+        {
+            "doc_count": 28,
+            "month": "1945-10"
+        },
+        {
+            "doc_count": 27,
+            "month": "1980-02"
+        },
+        {
+            "doc_count": 27,
+            "month": "1979-08"
+        },
+        {
+            "doc_count": 25,
+            "month": "1951-11"
+        },
+        {
+            "doc_count": 24,
+            "month": "1951-08"
+        },
+        {
+            "doc_count": 23,
+            "month": "1951-10"
+        },
+        {
+            "doc_count": 22,
+            "month": "1979-07"
+        },
+        {
+            "doc_count": 22,
+            "month": "1980-09"
+        },
+        {
+            "doc_count": 22,
+            "month": "1979-11"
+        },
+        {
+            "doc_count": 21,
+            "month": "1951-12"
+        },
+        {
+            "doc_count": 21,
+            "month": "1980-06"
+        },
+        {
+            "doc_count": 20,
+            "month": "1980-12"
+        },
+        {
+            "doc_count": 19,
+            "month": "1980-05"
+        },
+        {
+            "doc_count": 19,
+            "month": "1980-10"
+        },
+        {
+            "doc_count": 18,
+            "month": "1951-09"
+        },
+        {
+            "doc_count": 18,
+            "month": "1945-09"
+        },
+        {
+            "doc_count": 18,
+            "month": "1948-06"
+        },
+        {
+            "doc_count": 18,
+            "month": "1945-11"
+        },
+        {
+            "doc_count": 18,
+            "month": "1951-05"
+        },
+        {
+            "doc_count": 17,
+            "month": "1980-04"
+        },
+        {
+            "doc_count": 17,
+            "month": "1946-08"
+        },
+        {
+            "doc_count": 15,
+            "month": "1947-01"
+        },
+        {
+            "doc_count": 15,
+            "month": "1951-03"
+        },
+        {
+            "doc_count": 15,
+            "month": "1979-10"
+        },
+        {
+            "doc_count": 14,
+            "month": "1947-12"
+        },
+        {
+            "doc_count": 14,
+            "month": "1948-05"
+        },
+        {
+            "doc_count": 13,
+            "month": "1946-04"
+        },
+        {
+            "doc_count": 13,
+            "month": "1945-12"
+        },
+        {
+            "doc_count": 12,
+            "month": "1949-02"
+        },
+        {
+            "doc_count": 12,
+            "month": "1951-01"
+        },
+        {
+            "doc_count": 12,
+            "month": "1951-06"
+        },
+        {
+            "doc_count": 11,
+            "month": "1947-11"
+        },
+        {
+            "doc_count": 11,
+            "month": "1946-02"
+        },
+        {
+            "doc_count": 10,
+            "month": "1980-11"
+        },
+        {
+            "doc_count": 10,
+            "month": "1946-01"
+        },
+        {
+            "doc_count": 10,
+            "month": "1950-01"
+        },
+        {
+            "doc_count": 10,
+            "month": "1948-04"
+        },
+        {
+            "doc_count": 10,
+            "month": "1950-03"
+        },
+        {
+            "doc_count": 10,
+            "month": "1951-02"
+        },
+        {
+            "doc_count": 10,
+            "month": "1946-07"
+        },
+        {
+            "doc_count": 10,
+            "month": "1980-08"
+        },
+        {
+            "doc_count": 10,
+            "month": "1947-10"
+        },
+        {
+            "doc_count": 9,
+            "month": "1981-01"
+        },
+        {
+            "doc_count": 9,
+            "month": "1947-09"
+        },
+        {
+            "doc_count": 8,
+            "month": "1950-02"
+        },
+        {
+            "doc_count": 8,
+            "month": "1946-06"
+        },
+        {
+            "doc_count": 8,
+            "month": "1951-04"
+        },
+        {
+            "doc_count": 8,
+            "month": "1949-07"
+        },
+        {
+            "doc_count": 7,
+            "month": "1949-10"
+        },
+        {
+            "doc_count": 7,
+            "month": "1950-10"
+        },
+        {
+            "doc_count": 7,
+            "month": "1949-01"
+        },
+        {
+            "doc_count": 7,
+            "month": "1948-03"
+        },
+        {
+            "doc_count": 7,
+            "month": "1949-04"
+        },
+        {
+            "doc_count": 7,
+            "month": "1946-10"
+        },
+        {
+            "doc_count": 6,
+            "month": "1948-10"
+        },
+        {
+            "doc_count": 6,
+            "month": "1948-02"
+        },
+        {
+            "doc_count": 6,
+            "month": "1947-03"
+        },
+        {
+            "doc_count": 6,
+            "month": "1947-04"
+        },
+        {
+            "doc_count": 6,
+            "month": "1949-03"
+        },
+        {
+            "doc_count": 6,
+            "month": "1947-05"
+        },
+        {
+            "doc_count": 6,
+            "month": "1950-05"
+        },
+        {
+            "doc_count": 6,
+            "month": "1950-06"
+        },
+        {
+            "doc_count": 6,
+            "month": "1948-08"
+        },
+        {
+            "doc_count": 6,
+            "month": "1949-08"
+        },
+        {
+            "doc_count": 5,
+            "month": "1946-12"
+        },
+        {
+            "doc_count": 5,
+            "month": "1949-12"
+        },
+        {
+            "doc_count": 5,
+            "month": "1946-05"
+        },
+        {
+            "doc_count": 5,
+            "month": "1945-08"
+        },
+        {
+            "doc_count": 5,
+            "month": "1950-04"
+        },
+        {
+            "doc_count": 5,
+            "month": "1947-07"
+        },
+        {
+            "doc_count": 5,
+            "month": "1950-07"
+        },
+        {
+            "doc_count": 4,
+            "month": "1946-11"
+        },
+        {
+            "doc_count": 4,
+            "month": "1949-09"
+        },
+        {
+            "doc_count": 4,
+            "month": "1948-01"
+        },
+        {
+            "doc_count": 4,
+            "month": "1948-12"
+        },
+        {
+            "doc_count": 4,
+            "month": "1947-02"
+        },
+        {
+            "doc_count": 4,
+            "month": "1947-06"
+        },
+        {
+            "doc_count": 4,
+            "month": "1946-09"
+        },
+        {
+            "doc_count": 3,
+            "month": "1950-09"
+        },
+        {
+            "doc_count": 3,
+            "month": "1948-11"
+        },
+        {
+            "doc_count": 3,
+            "month": "1950-11"
+        },
+        {
+            "doc_count": 3,
+            "month": "1950-12"
+        },
+        {
+            "doc_count": 2,
+            "month": "1950-08"
+        },
+        {
+            "doc_count": 2,
+            "month": "1946-03"
+        },
+        {
+            "doc_count": 2,
+            "month": "1948-07"
+        },
+        {
+            "doc_count": 2,
+            "month": "1948-09"
+        },
+        {
+            "doc_count": 1,
+            "month": "1949-11"
+        },
+        {
+            "doc_count": 1,
+            "month": "1949-06"
+        }
+    ],
+    "person_data": [
+        {
+            "doc_count": 7202,
+            "id": 4075,
+            "name": "Kissinger, Henry; Kissinger, Henry A."
+        },
+        {
+            "doc_count": 6977,
+            "id": 6644,
+            "name": "Rusk, Dean"
+        },
+        {
+            "doc_count": 4888,
+            "id": 5593,
+            "name": "Nixon, Richard; Nixon, Richard M.; Nixon, Richard Milhouse"
+        },
+        {
+            "doc_count": 4668,
+            "id": 2100,
+            "name": "Dulles, John Foster"
+        },
+        {
+            "doc_count": 3774,
+            "id": 2200,
+            "name": "Eisenhower; Eisenhower, Dwight D; Eisenhower, Dwight D.; Eisenhower, Dwight David; Eisenhower, General Dwight D.; Eisenhower, General of the Army Dwight D."
+        },
+        {
+            "doc_count": 2589,
+            "id": 4004,
+            "name": "Khrushchev, Nikita; Khrushchev, Nikita S.; Khrushchev, Nikita Sergeevich; Khrushchev, Nikita Sergeievich; Khrushchev, Nikita Sergeivich; Khrushchev, Nikita Sergeyevich; Khrushchev, Nitita Sergeyevich"
+        },
+        {
+            "doc_count": 2464,
+            "id": 5067,
+            "name": "McNamara, Robert; McNamara, Robert C.; McNamara, Robert S."
+        },
+        {
+            "doc_count": 2323,
+            "id": 6530,
+            "name": "Rogers, William B.; Rogers, William D.; Rogers, William P; Rogers, William P."
+        },
+        {
+            "doc_count": 2270,
+            "id": 3940,
+            "name": "Kennedy, John E; Kennedy, John F.; Kennedy, Robert E; Kennedy, Robert F.; Kennedy, Robert, F."
+        },
+        {
+            "doc_count": 2250,
+            "id": 3762,
+            "name": "Johnson, Lyndon B.; Johnson, Lyndon Baines; Johnson, Senator Lyndon B."
+        }
+    ]
+}

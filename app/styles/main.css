@@ -1,0 +1,38 @@
+body {
+  font: 14px helvetica;
+  
+}
+
+svg {
+
+}
+
+.row {
+  padding: 5px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #333;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill: #333;
+  font-size: 11px;
+}
+
+.brush .extent {
+  stroke: #CCC;
+  fill: #BBB;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+.selected {
+  fill: #78C656;
+}

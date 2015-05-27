@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>history lab</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+
+    <!-- build:js bower_components/webcomponentsjs/webcomponents.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:vulcanized elements/elements.vulcanized.html -->
+    <link rel="import" href="bower_components/lens-data-crossfilter/lens-data-crossfilter.html">
+    <!-- endbuild-->
+  </head>
+  <body unresolved>
+<!--     <div>
+      <template id="auto-bind-demo" is="auto-binding">
+        <lens-data-crossfilter id="countries-hist"></lens-data-crosfilter>
+      </template>
+    </div>
+ -->
+    <section>
+      <h3>Documents by Countries</h3>
+      <div class="row">
+        <div class="span2" id="sum1"></div>
+      </div>
+      <div class="row" id="chart1"></div>
+    </section>
+
+    <section>
+      <h3>Documents by Persons</h3>
+      <div class="row">
+        <div class="span2" id="sum2"></div>
+      </div>
+      <div class="row" id="chart2"></div>
+    </section>
+
+    <section>
+      <h3>Documents by Years</h3>
+      <div class="row">
+        <div class="span2" id="sum3"></div>
+      </div>
+      <div class="row" id="chart3"></div>
+    </section>
+
+    <section>
+      <h3>Documents by Topics</h3>
+      <div class="row">
+        <div class="span2" id="sum4"></div>
+      </div>
+      <div class="row" id="chart4"></div>
+    </section>
+
+
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/app.js"></script>
+    <!-- endbuild-->
+  </body>
+</html>
+
+

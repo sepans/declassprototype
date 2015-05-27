@@ -1,0 +1,16 @@
+{
+  "name": "history-lab",
+  "version": "0.0.0",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5.1",
+    "lens-data-crossfilter": "lenses/lens-data-crossfilter",
+    "jquery": "~2.1.4",
+    "lodash": "~3.9.3"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^2.0.0"
+  },
+  "resolutions": {
+    "lodash": "~3.9.3"
+  }
+}
