@@ -1,11 +1,6 @@
 {
     "country_data": [
         {
-            "doc_count": 61495,
-            "id": "840",
-            "name": "US"
-        },
-        {
             "doc_count": 26914,
             "id": "810",
             "name": "USSR"
