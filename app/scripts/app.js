@@ -134,25 +134,27 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 }
 
   $.getJSON("data/data.json", function(json) {
-	    console.log(json); // this will show the info it in firebug console
 	    var countryData = _.map(json.country_data, function(item) {
 	    	return {
 	    		x: item.name,
 	    		y: item.doc_count
 	    	}
 	    });
-	    //console.log(data);
 	    update(countryData, '#chart1', '#sum1');
 
 	    var personData = _.map(json.person_data, function(item) {
 	    	var shortName = item.name.split(';')[0];//item.name.substring(0,item.name.indexOf(';'))
+
+	    	var firstLast = shortName.split(', ');
+
+
+	    	shortName = (firstLast.length>1 ? firstLast[1] : '') + ' ' + firstLast[0];
 
 	    	return {
 	    		x: shortName,
 	    		y: item.doc_count
 	    	}
 	    });
-	    //console.log(data);
 	    update(personData, '#chart2', '#sum2');
 
 /*
@@ -170,7 +172,6 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 	    	var year = item.month.split('-')[0];
 	    	return year;
 	    });
-	    console.log(dateData);
 
 	    dateData = _.mapValues(dateData, function(value) {
 /*
@@ -189,7 +190,6 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 	    	return sum;
 	    });
 
-	    console.log(dateData);
 	    var newDateData = [];
 			Object.keys(dateData).forEach(function(key) {
 				newDateData.push({x: key, y: dateData[key]})
@@ -206,7 +206,6 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 */
 
 
-	    console.log(newDateData);
 	    update(newDateData, '#chart3', '#sum3');
 
 
@@ -219,6 +218,8 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 	    	}
 	    });
 	    //console.log(data);
+	    topicData = _.sortBy(topicData, 'y');
+	    topicData.reverse();
 	    update(topicData, '#chart4', '#sum4');
 
 
