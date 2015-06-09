@@ -6,6 +6,7 @@
 
   });
 
+ 
   
 
 // wrap document so it plays nice with other libraries
@@ -22,6 +23,7 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
       duration = 500,
       formatNumber = d3.format(',d'),
       brush = d3.svg.brush();
+
 
   margin.left = formatNumber(d3.max(data, function(d) { return d.y; })).length * 14;
   var w = width - margin.left - margin.right,
@@ -40,9 +42,12 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
                 .orient('bottom'),
       yAxis = d3.svg.axis()
                 .scale(y)
-                .orient('left'),
-      brush = d3.svg.brush()
+                .orient('left');
+  
+  var brush = d3.svg.brush()
                       .x(x)
+                      //.y(y)
+                      //.extent([0,width], [0, height])
                       .on('brushstart', brushstart)
                       .on('brush', brushmove)
                       .on('brushend', brushend);
@@ -66,11 +71,23 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
   svgEnter.append('g').classed('barGroup', true);
   chart.selectAll('.brush').remove();
   chart.selectAll('.selected').classed('selected', false);
+  
+/*
   chart.append('g')
             .classed('brush', true)
+            //.attr('pointer-events', 'auto')
             .call(brush)
           .selectAll('rect')
             .attr('height', h);
+
+*/  
+ 
+  //chart.call(brush);
+
+  //brush.extent([0,width], [0, height]);
+
+
+  var tip =  d3.select(container).append('div').attr('class','tip');
 
   var bars = chart.select('.barGroup').selectAll('.bar').data(data);
 
@@ -80,7 +97,22 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
           .attr('x', w) // start here for object constancy
           .attr('width', x.rangeBand())
           .attr('y', function(d, i) { return y(d.y); })
-          .attr('height', function(d, i) { return h - y(d.y); });
+          .attr('height', function(d, i) { return h - y(d.y); })
+          .attr("pointer-events", "all")
+          .on('mouseover', function(d, i) {
+            console.log('on ', d, i, x(i));
+            tip
+              .style('left',  x(d.x) + x.rangeBand() + 'px')
+              .style('bottom', height -  y(d.y) + 20 + 'px')
+              //.style('width', x.rangeBand() + 'px')
+              .html(d.hover ? d.hover : '<div class="title">'+d.x+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
+            tip.transition().duration(300).style('opacity', 0.9);
+          })
+          .on('mouseout', function(d) {
+            tip.text('');
+            tip.style('opacity', 0);
+
+          });
 
   bars.transition()
         .duration(duration)
@@ -210,10 +242,11 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 
 
 	    var topicData = _.map(json.topic_data, function(item) {
-	    	var shortName = item.title.replace('{','').split(',')[0];//item.name.substring(0,item.name.indexOf(';'))
+	    	var shortName = item.title.replace('{','').split(',')[0] + '...';//item.name.substring(0,item.name.indexOf(';'))
 
 	    	return {
 	    		x: shortName,
+          hover: '<div class="title">'+item.title.replace('{','').replace('}','')+'</div>'+'<span><label>count: </label>'+item.doc_count+'</span>',
 	    		y: item.doc_count
 	    	}
 	    });

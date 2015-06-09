@@ -9,6 +9,7 @@ svg {
 
 .row {
   padding: 5px;
+  position: relative;
 }
 
 .axis path,
@@ -36,3 +37,21 @@ svg {
 .selected {
   fill: #78C656;
 }
+
+.tip {
+  width: 100px;
+  text-align: center;
+  color: #EEE;
+  border: 1px solid #eee;
+  /*text-anchor: middle;*/
+  position: absolute;
+  opacity: 0;
+  background-color: #555;
+  padding: 5px;
+  margin: 0;
+  font-size: 12px;
+}
+.tip .title {
+  font-weight: bold;
+  margin-bottom: 2px;
+} 
