@@ -109,7 +109,7 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
             tip.transition().duration(300).style('opacity', 0.9);
           })
           .on('mouseout', function(d) {
-            tip.text('');
+            tip.html('');
             tip.style('opacity', 0);
 
           });
@@ -184,6 +184,7 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 
 	    	return {
 	    		x: shortName,
+          hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>count: </label>'+item.doc_count+'</span>',
 	    		y: item.doc_count
 	    	}
 	    });

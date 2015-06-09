@@ -55,3 +55,9 @@ svg {
   font-weight: bold;
   margin-bottom: 2px;
 } 
+
+.tip img {
+  display: block;
+  height: 100px;
+  margin: 2px auto;
+}

@@ -1811,52 +1811,62 @@
         {
             "doc_count": 7202,
             "id": 4075,
-            "name": "Kissinger, Henry; Kissinger, Henry A."
+            "name": "Kissinger, Henry; Kissinger, Henry A.",
+            "image": "https://commons.wikimedia.org/wiki/File:Henry%20Kissinger.jpg"
         },
         {
             "doc_count": 6977,
             "id": 6644,
-            "name": "Rusk, Dean"
+            "name": "Rusk, Dean",
+            "image": "https://commons.wikimedia.org/wiki/File:Dean%20Rusk%201968.jpg"
         },
         {
             "doc_count": 4888,
             "id": 5593,
-            "name": "Nixon, Richard; Nixon, Richard M.; Nixon, Richard Milhouse"
+            "name": "Nixon, Richard; Nixon, Richard M.; Nixon, Richard Milhouse",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/2/29/Lbj2.jpg"
         },
         {
             "doc_count": 4668,
             "id": 2100,
-            "name": "Dulles, John Foster"
+            "name": "Dulles, John Foster",
+            "image": "https://commons.wikimedia.org/wiki/File:JohnFosterDulles.jpeg"
         },
         {
             "doc_count": 3774,
             "id": 2200,
-            "name": "Eisenhower; Eisenhower, Dwight D; Eisenhower, Dwight D.; Eisenhower, Dwight David; Eisenhower, General Dwight D.; Eisenhower, General of the Army Dwight D."
+            "name": "Eisenhower; Eisenhower, Dwight D; Eisenhower, Dwight D.; Eisenhower, Dwight David; Eisenhower, General Dwight D.; Eisenhower, General of the Army Dwight D.",
+            "image": "https://commons.wikimedia.org/wiki/File:Dwight%20D.%20Eisenhower,%20official%20Presidential%20portrait.jpg"
         },
         {
             "doc_count": 2589,
             "id": 4004,
-            "name": "Khrushchev, Nikita; Khrushchev, Nikita S.; Khrushchev, Nikita Sergeevich; Khrushchev, Nikita Sergeievich; Khrushchev, Nikita Sergeivich; Khrushchev, Nikita Sergeyevich; Khrushchev, Nitita Sergeyevich"
+            "name": "Khrushchev, Nikita; Khrushchev, Nikita S.; Khrushchev, Nikita Sergeevich; Khrushchev, Nikita Sergeievich; Khrushchev, Nikita Sergeivich; Khrushchev, Nikita Sergeyevich; Khrushchev, Nitita Sergeyevich",
+            "image": "https://commons.wikimedia.org/wiki/File:Nikita%20Khruchchev%20Colour.jpg"
         },
         {
             "doc_count": 2464,
             "id": 5067,
-            "name": "McNamara, Robert; McNamara, Robert C.; McNamara, Robert S."
+            "name": "McNamara, Robert; McNamara, Robert C.; McNamara, Robert S.",
+            "image": "https://commons.wikimedia.org/wiki/File:Robert%20McNamara%20official%20portrait.jpg"
         },
         {
             "doc_count": 2323,
             "id": 6530,
-            "name": "Rogers, William B.; Rogers, William D.; Rogers, William P; Rogers, William P."
+            "name": "Rogers, William B.; Rogers, William D.; Rogers, William P; Rogers, William P.",
+            "image": "http://upload.wikimedia.org/wikipedia/commons/6/6b/WilliamPRogersSoS.jpg"
         },
         {
             "doc_count": 2270,
             "id": 3940,
-            "name": "Kennedy, John E; Kennedy, John F.; Kennedy, Robert E; Kennedy, Robert F.; Kennedy, Robert, F."
+            "name": "Kennedy, John F; Kennedy, John E.; Kennedy, Robert E; Kennedy, Robert F.; Kennedy, Robert, F.",
+            "image": "https://commons.wikimedia.org/wiki/File:John%20F%20Kennedy.jpg"
         },
         {
             "doc_count": 2250,
             "id": 3762,
-            "name": "Johnson, Lyndon B.; Johnson, Lyndon Baines; Johnson, Senator Lyndon B."
+            "name": "Johnson, Lyndon B.; Johnson, Lyndon Baines; Johnson, Senator Lyndon B.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Lbj2.jpg/160px-Lbj2.jpg"
         }
     ]
 }
