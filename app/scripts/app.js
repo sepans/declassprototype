@@ -72,15 +72,40 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
   chart.selectAll('.brush').remove();
   chart.selectAll('.selected').classed('selected', false);
   
-/*
+
   chart.append('g')
             .classed('brush', true)
             //.attr('pointer-events', 'auto')
             .call(brush)
+            .on('mousemove', function(records) {
+              var mouse = d3.mouse(this);
+              var domain = x.domain(),
+                  range = x.range();
+              var xLabel = domain[d3.bisect(range, mouse[0]) - 1];
+              
+              var d = records.filter(function(item) {
+                return item.x === xLabel;
+              })[0];
+
+              //var yValue = d.y
+
+              tip
+                .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
+                .style('bottom', height -  y(d.y) + 20 + 'px')
+                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
+
+               tip.style('opacity', 0.9);
+
+
+              
+            })
+            .on('mouseout', function(d) {
+                tip.style('opacity', 0);
+            })
           .selectAll('rect')
             .attr('height', h);
 
-*/  
+  
  
   //chart.call(brush);
 
@@ -102,7 +127,7 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
           .on('mouseover', function(d, i) {
             console.log('on ', d, i, x(i));
             tip
-              .style('left',  x(d.x) + x.rangeBand() + 'px')
+              .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
               .style('bottom', height -  y(d.y) + 20 + 'px')
               //.style('width', x.rangeBand() + 'px')
               .html(d.hover ? d.hover : '<div class="title">'+d.x+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
@@ -184,7 +209,7 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 
 	    	return {
 	    		x: shortName,
-          hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>count: </label>'+item.doc_count+'</span>',
+          hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>frequency: </label>'+item.doc_count+'</span>',
 	    		y: item.doc_count
 	    	}
 	    });
@@ -247,7 +272,7 @@ var margin = {top: 0, bottom: 20, left: 0, right: 0},
 
 	    	return {
 	    		x: shortName,
-          hover: '<div class="title">'+item.title.replace('{','').replace('}','')+'</div>'+'<span><label>count: </label>'+item.doc_count+'</span>',
+          hover: '<div class="title">'+item.title.replace('{','').replace('}','')+'</div>'+'<span><label>frequency: </label>'+item.doc_count+'</span>',
 	    		y: item.doc_count
 	    	}
 	    });

@@ -51,6 +51,19 @@ svg {
   margin: 0;
   font-size: 12px;
 }
+
+.tip:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 60%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #555;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+
 .tip .title {
   font-weight: bold;
   margin-bottom: 2px;
