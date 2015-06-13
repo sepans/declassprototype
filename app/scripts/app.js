@@ -2,19 +2,28 @@
   'use strict';
 
 
-  document.addEventListener('polymer-ready', function () {
-
-  });
+  var vizData;
 
  
   
 
 // wrap document so it plays nice with other libraries
 // http://www.polymer-project.org/platform/shadow-dom.html#wrappers
+$(document).ready(function() {
+  $("input[name='interval']").change(function(e) {
+    console.log('clicked' , this, this.value);
+    var interval = this.value;
+    var dateData = mapDateData(vizData, interval);
+    update(dateData, '#dates');
+
+  });
+  
+});
+    
 
 
 
-function update(data, container, sumContainer) {
+function update(data, container) {
  // var data = randomizeData(20, Math.random()*100000);
   
 var margin = {top: 0, bottom: 50, left: 0, right: 0},
@@ -23,6 +32,8 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
       duration = 500,
       formatNumber = d3.format(',d'),
       brush = d3.svg.brush();
+
+  var numberFormat = d3.format("0,000");
 
 
   margin.left = formatNumber(d3.max(data, function(d) { return d.y; })).length * 14;
@@ -52,7 +63,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
 
   //display 15 chart labels at most.
   if(data.length>15) {
-    var ratio = Math.ceil(data.length/20);
+    var ratio = Math.ceil(data.length/15);
     var ticks = data.reduce(function(prev, cur, i) {
       if(i%ratio ===0) {
         prev.push(cur.x);
@@ -72,23 +83,33 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
                       .on('brush', brushmove)
                       .on('brushend', brushend);
 
-  var svg = d3.select(container).selectAll('svg').data([data]),
-      svgEnter = svg.enter().append('svg')
-                              .attr('width', width)
-                              .attr('height', height)
-                              .append('g')
-                              .attr('width', w)
-                              .attr('height', h)
-                              .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-                              .classed('chart', true),
-      chart = d3.select(container+' .chart');
+  var containerEl = d3.select(container);                   
 
-  svgEnter.append('g')
+  containerEl.select('.chartdiv').selectAll('svg').remove();
+
+  //data([data]) needed for records in brush mouseover.
+  var svgData = containerEl.select('.chartdiv').selectAll('svg').data([data]);
+
+
+  var svg = svgData.enter().append('svg')
+        .attr('width', width)
+        .attr('height', height);
+  var chart = svg.append('g')
+        .attr('width', w)
+        .attr('height', h)
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .classed('chart', true);
+
+  //var chart = containerEl.select('.chart');
+  console.log(chart);
+
+  chart.append('g')
             .classed('x axis', true)
             .attr('transform', 'translate(' + 0 + ',' + h + ')');
-  svgEnter.append('g')
-            .classed('y axis', true)
-  svgEnter.append('g').classed('barGroup', true);
+  chart.append('g')
+            .classed('y axis', true);
+
+  chart.append('g').classed('barGroup', true);
   chart.selectAll('.brush').remove();
   chart.selectAll('.selected').classed('selected', false);
   
@@ -126,6 +147,8 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
           .selectAll('rect')
             .attr('height', h);
 
+  d3.selectAll(".brush .resize").append("path").attr("d", resizePath);
+
   
  
   //chart.call(brush);
@@ -133,19 +156,23 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
   //brush.extent([0,width], [0, height]);
 
 
-  var tip =  d3.select(container).append('div').attr('class','tip');
+  var tip =  containerEl.append('div').attr('class','tip');
 
   var bars = chart.select('.barGroup').selectAll('.bar').data(data);
+
+  //console.log('BAR', bars);
 
   bars.enter()
         .append('rect')
           .classed('bar', true)
-          .attr('x', w) // start here for object constancy
+          .attr('x', function(d, i) { return x(d.x); }) // start here for object constancy
           .attr('width', x.rangeBand())
-          .attr('y', function(d, i) { return y(d.y); })
-          .attr('height', function(d, i) { return h - y(d.y); })
+          .attr('y', h)
+          .attr('height', 0)
           .attr("pointer-events", "all")
           .on('mouseover', function(d, i) {
+            //doesn't work with brush
+            /*
             console.log('on ', d, i, x(i));
             tip
               .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
@@ -153,6 +180,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
               //.style('width', x.rangeBand() + 'px')
               .html(d.hover ? d.hover : '<div class="title">'+d.x+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
             tip.transition().duration(300).style('opacity', 0.9);
+            */
           })
           .on('mouseout', function(d) {
             tip.html('');
@@ -202,7 +230,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
   }    
 
   function makeSum() {
-    var sumDiv = d3.select(sumContainer),
+    var sumDiv = containerEl.select('.sum'),
         extent = brush.extent(),
         sum = 0;
 
@@ -212,94 +240,128 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
       if (extent[0] <= x(d.x) && x(d.x) + x.rangeBand() <= extent[1])
         sum += d.y;
     });
-    sumDiv.text('Selected Total: ' + sum);
+    sumDiv.text('Selected Total: ' + numberFormat(sum));
   }  
 
   makeSum();
 }
 
   $.getJSON("data/data.json", function(json) {
-	    var countryData = _.map(json.country_data, function(item) {
-	    	return {
-	    		x: item.name,
-	    		y: item.doc_count
-	    	}
-	    });
-	    update(countryData, '#chart1', '#sum1');
 
-	    var personData = _.map(json.person_data, function(item) {
-	    	var shortName = item.name.split(';')[0];//item.name.substring(0,item.name.indexOf(';'))
+      vizData = json;
 
-	    	var firstLast = shortName.split(', ');
+      var countryData = _.map(json.country_data, function(item) {
+        return {
+          x: item.name,
+          y: item.doc_count
+        }
+      });
+      update(countryData, '#coutntries');
+
+      var personData = _.map(json.person_data, function(item) {
+        var shortName = item.name.split(';')[0];//item.name.substring(0,item.name.indexOf(';'))
+
+        var firstLast = shortName.split(', ');
 
 
-	    	shortName = (firstLast.length>1 ? firstLast[1] : '') + ' ' + firstLast[0];
+        shortName = (firstLast.length>1 ? firstLast[1] : '') + ' ' + firstLast[0];
 
-	    	return {
-	    		x: shortName,
+        return {
+          x: shortName,
           hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>frequency: </label>'+item.doc_count+'</span>',
-	    		y: item.doc_count
-	    	}
-	    });
-	    update(personData, '#chart2', '#sum2');
+          y: item.doc_count
+        }
+      });
+      update(personData, '#persons');
 
        
-      //montly
-	    var dateData = _.sortBy(_.map(json.date_data, function(item) {
-	    	return {
-	    		x: item.month,
-	    		y: item.doc_count
-	    	}
-	    }), 'x');
-	    update(dateData, '#chart3', '#sum3');
-	    
-     
+      
+     var interval = document.querySelector('input[name="interval"]:checked').value;
+     console.log('interval', interval);
+
+     var dateData = mapDateData(vizData, interval);
+     update(dateData, '#dates');
+
+
      
 /*
-	    // yearly
-      var dateData = _.groupBy(json.date_data, function(item) {
-	    	var year = item.month.split('-')[0];
-	    	return year;
-	    });
 
-	    dateData = _.mapValues(dateData, function(value) {
-
-	    
-	    	var sum = _.reduce(value, function(m, x) {
-	    		return m + x.doc_count;
-	    	},0);
-	    	return sum;
-	    });
-
-	    var newDateData = [];
-			Object.keys(dateData).forEach(function(key) {
-				newDateData.push({x: key, y: dateData[key]})
-			});
-
-         
-      update(newDateData, '#chart3', '#sum3');
 
 */
 
 
 
 
-	    var topicData = _.map(json.topic_data, function(item) {
-	    	var shortName = item.title.replace('{','').split(',')[0] + '...';//item.name.substring(0,item.name.indexOf(';'))
+      var topicData = _.map(json.topic_data, function(item) {
+        var shortName = item.title.replace('{','').split(',')[0] + '...';//item.name.substring(0,item.name.indexOf(';'))
 
-	    	return {
-	    		x: shortName,
+        return {
+          x: shortName,
           hover: '<div class="title">'+item.title.replace('{','').replace('}','')+'</div>'+'<span><label>frequency: </label>'+item.doc_count+'</span>',
-	    		y: item.doc_count
-	    	}
-	    });
-	    //console.log(data);
-	    topicData = _.sortBy(topicData, 'y');
-	    topicData.reverse();
-	    update(topicData, '#chart4', '#sum4');
+          y: item.doc_count
+        }
+      });
+      //console.log(data);
+      topicData = _.sortBy(topicData, 'y');
+      topicData.reverse();
+      update(topicData, '#topics');
 
 
   });
+
+
+
+  function mapDateData(data, interval) {
+    if(interval==='month') {
+      //montly
+      var dateData = _.sortBy(_.map(data.date_data, function(item) {
+        return {
+          x: item.month,
+          y: item.doc_count
+        }
+      }), 'x');
+      return dateData
+
+    }
+    else {
+      // yearly
+      dateData = _.groupBy(data.date_data, function(item) {
+        var year = item.month.split('-')[0];
+        return year;
+      });
+
+      dateData = _.mapValues(dateData, function(value) {
+
+      
+        var sum = _.reduce(value, function(m, x) {
+          return m + x.doc_count;
+        },0);
+        return sum;
+      });
+
+      var newDateData = [];
+      Object.keys(dateData).forEach(function(key) {
+        newDateData.push({x: key, y: dateData[key]})
+      });
+
+      return newDateData;
+    }
+  }
+
+  function resizePath(d) {
+                var e = +(d == "e"),
+                    x = e ? 1 : -1,
+                    y = 40;
+                return "M" + (.5 * x) + "," + y
+                    + "A6,6 0 0 " + e + " " + (6.5 * x) + "," + (y + 6)
+                    + "V" + (2 * y - 6)
+                    + "A6,6 0 0 " + e + " " + (.5 * x) + "," + (2 * y)
+                    + "Z"
+                    + "M" + (2.5 * x) + "," + (y + 8)
+                    + "V" + (2 * y - 8)
+                    + "M" + (4.5 * x) + "," + (y + 8)
+                    + "V" + (2 * y - 8);
+              }
 
 
  

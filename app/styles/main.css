@@ -7,11 +7,19 @@ svg {
 
 }
 
-.row {
+section {
   padding: 5px;
   position: relative;
 }
 
+h3 {
+  margin: 5px 0;
+}
+
+.sum {
+  font-size: 13px;
+  margin: 10px 0;
+}
 .axis path,
 .axis line {
   fill: none;
@@ -71,6 +79,11 @@ svg {
 
 .tip img {
   display: block;
-  height: 100px;
+  height: 70px;
   margin: 2px auto;
+}
+
+.brush .resize path {
+  fill: #eee;
+  stroke: #666;
 }
