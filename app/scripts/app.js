@@ -3,6 +3,8 @@
 
 
   var vizData;
+  var formatNumber = d3.format(',d');
+
 
  
   
@@ -26,14 +28,13 @@ $(document).ready(function() {
 function update(data, container) {
  // var data = randomizeData(20, Math.random()*100000);
   
-var margin = {top: 0, bottom: 50, left: 0, right: 0},
+var margin = {top: 0, bottom: 50, left: 0, right: 40},
       width = 600,
       height = 400,
       duration = 500,
-      formatNumber = d3.format(',d'),
       brush = d3.svg.brush();
 
-  var numberFormat = d3.format("0,000");
+  //var formatNumber = d3.format("0,000");
 
 
   margin.left = formatNumber(d3.max(data, function(d) { return d.y; })).length * 14;
@@ -50,7 +51,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
   
   x.domain(data.map(function(d) { return d.x; }));
 
-  console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
+  //console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
 
 
 
@@ -131,7 +132,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
               //var yValue = d.y
 
               tip
-                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
+                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>frequency: </label>'+formatNumber(d.y)+'</span>');
               tip.transition().duration(100)
                 .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
                 .style('bottom', height -  y(d.y) + 20 + 'px')
@@ -210,6 +211,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
             .duration(duration)
               .call(yAxis);
   chart.selectAll('.x .tick text')
+                //.attr('transform', 'translate(0,5) rotate(90)')
                 .attr('transform', 'translate(0,0) rotate(20)')
                 .style('text-anchor', 'start');
 
@@ -234,13 +236,13 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
         extent = brush.extent(),
         sum = 0;
 
-        console.log('extent', extent, brush)
+        //console.log('extent', extent, brush)
     
     data.forEach(function(d) {
       if (extent[0] <= x(d.x) && x(d.x) + x.rangeBand() <= extent[1])
         sum += d.y;
     });
-    sumDiv.text('Selected Total: ' + numberFormat(sum));
+    sumDiv.text('Selected Total: ' + formatNumber(sum));
   }  
 
   makeSum();
@@ -268,7 +270,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
 
         return {
           x: shortName,
-          hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>frequency: </label>'+item.doc_count+'</span>',
+          hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>frequency: </label>'+formatNumber(item.doc_count)+'</span>',
           y: item.doc_count
         }
       });
@@ -297,7 +299,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 0},
 
         return {
           x: shortName,
-          hover: '<div class="title">'+item.title.replace('{','').replace('}','')+'</div>'+'<span><label>frequency: </label>'+item.doc_count+'</span>',
+          hover: '<div class="title">'+item.title.replace('{','').replace('}','')+'</div>'+'<span><label>frequency: </label>'+formatNumber(item.doc_count)+'</span>',
           y: item.doc_count
         }
       });
