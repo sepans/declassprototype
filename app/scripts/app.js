@@ -16,20 +16,108 @@ $(document).ready(function() {
     console.log('clicked' , this, this.value);
     var interval = this.value;
     var dateData = mapDateData(vizData, interval);
-    update(dateData, '#dates');
+    HistChart(dateData, '#dates');
 
   });
   
 });
+
+
+function TreeChart(data, container) {
+
+
+  var margin = {top: 0, bottom: 50, left: 0, right: 40},
+        width = 700,
+        height = 400;
+
+  //var color = d3.scale.category20c();
+  console.log('chartdata', data);
+
+  var treemap = d3.layout.treemap()
+      .size([width, height])
+      .sort(function(a, b) {
+        return a.freq - b.freq;
+      })
+      //.sticky(true)
+      .ratio(3/2)
+      .value(function(d) { return d.freq; });
+  var containerEl = d3.select(container);
+
+  var div = containerEl.append('div')
+      .attr('class', 'treemap')
+      .style('position', 'relative')
+      .style('width', (width + margin.left + margin.right) + 'px')
+      .style('height', (height + margin.top + margin.bottom) + 'px')
+      .style('left', margin.left + 'px')
+      .style('top', margin.top + 'px');
+
+    var node = div.datum(data).selectAll('.node')
+      .data(treemap.nodes)
+    .enter().append('div')
+      .attr('class', function(d) {
+          if(d.name) {
+            return 'node '+ d.name.replace(/\s+/g,'_').toLowerCase();
+          }
+          else {
+            return 'node';
+          }
+      })
+      .call(position)
+      .style('height', function(d) { return Math.max(0, d.dy - 1) + 'px'; })
+      .on('click', function(d) {
+        this.classList.toggle('selected');
+        d.selected = !d.selected;
+        makeSum();
+
+      });
+      //.style('background', function(d) { return '#FFF' })
+      
+      node.append('div').attr('class', 'info').html(function(d) { 
+        return d.name ? '<div class="name">'+ d.name + 
+                        '</div><div class="freq">'+ formatNumber(d.freq) + ' docs</div>' : ''; 
+      })
+      
+      node.append('div')
+        .attr('class', function(d) {
+          //  background-size: 100% auto;
+          console.log(d ,(d.dx> d.dy));
+          return (d.dx> d.dy) ? 'image horizontal' : 'image vertical';
+        })
+        .style('background-image', function(d) { return 'url(' + d.image + ')'; });
+
+
+
+
+    function position() {
+      this.style("left", function(d) { return d.x + "px"; })
+          .style("top", function(d) { return d.y + "px"; })
+          .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+          .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+    }
+
+  function makeSum() {
+    var sumDiv = containerEl.select('.sum'),
+        sum = 0;
+
+    data.children.forEach(function(d) {
+      if (d.selected)
+        sum += d.freq;
+    });
+    sumDiv.text('Selected Total: ' + formatNumber(sum));
+  }  
+
+  makeSum();
+
+}
     
 
 
 
-function update(data, container) {
+function HistChart(data, container) {
  // var data = randomizeData(20, Math.random()*100000);
   
 var margin = {top: 0, bottom: 50, left: 0, right: 40},
-      width = 600,
+      width = 700,
       height = 400,
       duration = 500,
       brush = d3.svg.brush();
@@ -258,7 +346,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
           y: item.doc_count
         }
       });
-      update(countryData, '#coutntries');
+      HistChart(countryData, '#coutntries');
 
       var personData = _.map(json.person_data, function(item) {
         var shortName = item.name.split(';')[0];//item.name.substring(0,item.name.indexOf(';'))
@@ -271,10 +359,22 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
         return {
           x: shortName,
           hover: '<div class="title">'+shortName+'</div>'+'<img src="' + item.image +'"><span><label>frequency: </label>'+formatNumber(item.doc_count)+'</span>',
-          y: item.doc_count
+          y: item.doc_count,
+          image: item.image
         }
       });
-      update(personData, '#persons');
+      //HistChart(personData, '#persons');
+      console.log(personData);
+
+      var treePersonData = _.map(personData, function(item) {
+        return {
+          name: item.x,
+          freq: item.y,
+          image: item.image
+        }
+      })
+
+      TreeChart({children: treePersonData}, '#persons');
 
        
       
@@ -282,7 +382,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
      console.log('interval', interval);
 
      var dateData = mapDateData(vizData, interval);
-     update(dateData, '#dates');
+     HistChart(dateData, '#dates');
 
 
      
@@ -306,7 +406,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
       //console.log(data);
       topicData = _.sortBy(topicData, 'y');
       topicData.reverse();
-      update(topicData, '#topics');
+      HistChart(topicData, '#topics');
 
 
   });
