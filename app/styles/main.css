@@ -209,3 +209,17 @@ h3 {
 
 
 }
+
+.collection {
+  display: inline-block;
+  width: 150px;
+  height: 80px;
+  border: 1px solid #EEE;
+  margin-left: 10%;
+  margin-bottom: 30px;
+}
+
+.collection h3 {
+  width: 100%;
+  text-align: center;
+}

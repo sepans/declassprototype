@@ -22,6 +22,22 @@ $(document).ready(function() {
   
 });
 
+function CollectionList(data, container) {
+
+  console.log('data', data);
+
+  var margin = {top: 0, bottom: 50, left: 0, right: 40},
+        width = 700,
+        height = 400;
+  var containerEl = d3.select(container).select('.chartdiv');
+  containerEl.selectAll('.collection').data(data)
+            .enter().append('div')
+            .attr('class', 'collection')
+              .append('h3')
+              .text(function(d) {return d.toUpperCase()});
+
+}
+
 
 function TreeChart(data, container) {
 
@@ -99,6 +115,7 @@ function TreeChart(data, container) {
     var sumDiv = containerEl.select('.sum'),
         sum = 0;
 
+    console.log(data, data.children)
     data.children.forEach(function(d) {
       if (d.selected)
         sum += d.freq;
@@ -336,11 +353,15 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
   makeSum();
 }
 
-  $.getJSON("data/data.json", function(json) {
+  $.getJSON("data/dataAll.json", function(json) {
 
-      vizData = json;
+      vizData = json.frus;
 
-      var countryData = _.map(json.country_data, function(item) {
+      CollectionList(Object.keys(json), '#collections')
+
+      console.log('vizData', vizData);
+
+      var countryData = _.map(vizData.country_data, function(item) {
         return {
           x: item.name,
           y: item.doc_count
@@ -348,10 +369,12 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
       });
       HistChart(countryData, '#coutntries');
 
-      var personData = _.map(json.person_data, function(item) {
+      var personData = _.map(vizData.person_data, function(item) {
         var shortName = item.name.split(';')[0];//item.name.substring(0,item.name.indexOf(';'))
 
         var firstLast = shortName.split(', ');
+
+        item.image = item.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Henry_Kissinger.jpg/395px-Henry_Kissinger.jpg';
 
 
         shortName = (firstLast.length>1 ? firstLast[1] : '') + ' ' + firstLast[0];
@@ -394,7 +417,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
 
 
-      var topicData = _.map(json.topic_data, function(item) {
+      var topicData = _.map(vizData.topic_data, function(item) {
         var shortName = item.title.replace('{','').split(',')[0] + '...';//item.name.substring(0,item.name.indexOf(';'))
 
         return {
@@ -414,9 +437,10 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
 
   function mapDateData(data, interval) {
+    var allDates = data.date_data.filter(function(d) {return d.month});
     if(interval==='month') {
       //montly
-      var dateData = _.sortBy(_.map(data.date_data, function(item) {
+      var dateData = _.sortBy(_.map(allDates, function(item) {
         return {
           x: item.month,
           y: item.doc_count
@@ -427,7 +451,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
     }
     else {
       // yearly
-      dateData = _.groupBy(data.date_data, function(item) {
+      dateData = _.groupBy(allDates, function(item) {
         var year = item.month.split('-')[0];
         return year;
       });
