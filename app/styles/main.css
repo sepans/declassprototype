@@ -217,7 +217,15 @@ h3 {
   border: 1px solid #EEE;
   margin-left: 10%;
   margin-bottom: 30px;
+  cursor: pointer;
 }
+
+#collections .selected {
+  border-color: #14a5c9;
+  background: rgba(20,165,201,0.1);
+  
+}
+
 
 .collection h3 {
   width: 100%;

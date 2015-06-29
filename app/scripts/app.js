@@ -33,6 +33,10 @@ function CollectionList(data, container) {
   containerEl.selectAll('.collection').data(data)
             .enter().append('div')
             .attr('class', 'collection')
+            .on('click', function(d) {
+              this.classList.toggle('selected');
+              d.selected = !d.selected;
+            })
               .append('h3')
               .text(function(d) {return d.toUpperCase()});
 
