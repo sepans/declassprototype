@@ -33,6 +33,10 @@ function CollectionList(data, container) {
   containerEl.selectAll('.collection').data(data)
             .enter().append('div')
             .attr('class', 'collection')
+            .on('click', function(d) {
+              this.classList.toggle('selected');
+              d.selected = !d.selected;
+            })
               .append('h3')
               .text(function(d) {return d.toUpperCase()});
 
@@ -141,10 +145,14 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
   //var formatNumber = d3.format("0,000");
 
+  var yData = function(d) { return d.y; }
+  var xData = function(d) { return d.x; }
 
-  margin.left = formatNumber(d3.max(data, function(d) { return d.y; })).length * 14;
+
+  margin.left = formatNumber(d3.max(data, yData)).length * 14;
   var w = width - margin.left - margin.right,
       h = height - margin.top - margin.bottom;
+
 
   var x = d3.scale.ordinal()
               .rangeRoundBands([0, w], .1);
@@ -152,12 +160,13 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
   var y = d3.scale.linear()
               .range([h, 0]);
 
-  y.domain([0, d3.max(data, function(d) { return d.y; })]);
+  y.domain([0, d3.max(data, yData)]);
+
+  console.log(data.map(xData));
   
-  x.domain(data.map(function(d) { return d.x; }));
+  x.domain(data.map(xData));
 
   //console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
-
 
 
   var xAxis = d3.svg.axis()
@@ -172,7 +181,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
     var ratio = Math.ceil(data.length/15);
     var ticks = data.reduce(function(prev, cur, i) {
       if(i%ratio ===0) {
-        prev.push(cur.x);
+        prev.push(xData(cur));
       }
       return prev;
 
@@ -207,7 +216,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
         .classed('chart', true);
 
   //var chart = containerEl.select('.chart');
-  console.log(chart);
+  console.log('CHART', chart);
 
   chart.append('g')
             .classed('x axis', true)
@@ -231,7 +240,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
               var xLabel = domain[d3.bisect(range, mouse[0]) - 1];
               
               var d = records.filter(function(item) {
-                return item.x === xLabel;
+                return xData(item) === xLabel;
               })[0];
 
               //var yValue = d.y
@@ -239,8 +248,8 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
               tip
                 .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>frequency: </label>'+formatNumber(d.y)+'</span>');
               tip.transition().duration(100)
-                .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
-                .style('bottom', height -  y(d.y) + 20 + 'px')
+                .style('left',  x(xData(d)) + x.rangeBand()*0.83 + 'px')
+                .style('bottom', height -  y(yData(d)) + 20 + 'px')
                 .style('opacity', 0.9);
 
 
@@ -271,7 +280,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
   bars.enter()
         .append('rect')
           .classed('bar', true)
-          .attr('x', function(d, i) { return x(d.x); }) // start here for object constancy
+          .attr('x', function(d, i) { return x(xData(d)); }) // start here for object constancy
           .attr('width', x.rangeBand())
           .attr('y', h)
           .attr('height', 0)
@@ -297,9 +306,242 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
   bars.transition()
         .duration(duration)
           .attr('width', x.rangeBand())
-          .attr('x', function(d, i) { return x(d.x); })
-          .attr('y', function(d, i) { return y(d.y); })
-          .attr('height', function(d, i) { return h - y(d.y); });
+          .attr('x', function(d, i) { return x(xData(d)); })
+          .attr('y', function(d, i) { return y(yData(d)); })
+          .attr('height', function(d, i) { return h - y(yData(d)); });
+
+  bars.exit()
+        .transition()
+            .duration(duration)
+                .style('opacity', 0)
+                .remove();
+
+  chart.select('.x.axis')
+        .transition()
+            .duration(duration)
+              .call(xAxis);
+  chart.select('.y.axis')
+        .transition()
+            .duration(duration)
+              .call(yAxis);
+  chart.selectAll('.x .tick text')
+                //.attr('transform', 'translate(0,5) rotate(90)')
+                .attr('transform', 'translate(0,0) rotate(20)')
+                .style('text-anchor', 'start');
+
+
+
+  function brushstart() {
+    chart.classed("selecting", true);
+  }
+
+  function brushmove() {
+    var extent = d3.event.target.extent();
+    bars.classed("selected", function(d) { return extent[0] <= x(d.x) && x(d.x) + x.rangeBand() <= extent[1]; });
+    makeSum();
+  }
+
+  function brushend() {
+    chart.classed("selecting", !d3.event.target.empty());
+  }    
+
+  function makeSum() {
+    var sumDiv = containerEl.select('.sum'),
+        extent = brush.extent(),
+        sum = 0;
+
+        //console.log('extent', extent, brush)
+    
+    data.forEach(function(d) {
+      if (extent[0] <= x(d.x) && x(d.x) + x.rangeBand() <= extent[1])
+        sum += d.y;
+    });
+    sumDiv.text('Selected Total: ' + formatNumber(sum));
+  }  
+
+  makeSum();
+}
+
+
+
+
+function StackedHistChart(data, container) {
+ // var data = randomizeData(20, Math.random()*100000);
+
+console.log('STACKHIST');
+  
+var margin = {top: 0, bottom: 50, left: 0, right: 40},
+      width = 700,
+      height = 400,
+      duration = 500,
+      brush = d3.svg.brush();
+
+  //var formatNumber = d3.format("0,000");
+
+  var yData = function(d) { return d.frus; }
+  var xData = function(d) { return d.month; }
+
+
+  margin.left = formatNumber(d3.max(data, yData)).length * 14;
+  var w = width - margin.left - margin.right,
+      h = height - margin.top - margin.bottom;
+
+
+  var x = d3.scale.ordinal()
+              .rangeRoundBands([0, w], .1);
+
+  var y = d3.scale.linear()
+              .range([h, 0]);
+
+  y.domain([0, d3.max(data, yData)]);
+
+  console.log(data.map(xData));
+  
+  x.domain(data.map(xData));
+
+  //console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
+
+
+  var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient('bottom'),
+      yAxis = d3.svg.axis()
+                .scale(y)
+                .orient('left');
+
+  //display 15 chart labels at most.
+  if(data.length>15) {
+    var ratio = Math.ceil(data.length/15);
+    var ticks = data.reduce(function(prev, cur, i) {
+      if(i%ratio ===0) {
+        prev.push(xData(cur));
+      }
+      return prev;
+
+    },[]);
+    xAxis.tickValues(ticks);
+
+  }
+  
+  var brush = d3.svg.brush()
+                      .x(x)
+                      //.y(y)
+                      //.extent([0,width], [0, height])
+                      .on('brushstart', brushstart)
+                      .on('brush', brushmove)
+                      .on('brushend', brushend);
+
+  var containerEl = d3.select(container);                   
+
+  containerEl.select('.chartdiv').selectAll('svg').remove();
+
+  //data([data]) needed for records in brush mouseover.
+  var svgData = containerEl.select('.chartdiv').selectAll('svg').data([data]);
+
+
+  var svg = svgData.enter().append('svg')
+        .attr('width', width)
+        .attr('height', height);
+  var chart = svg.append('g')
+        .attr('width', w)
+        .attr('height', h)
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .classed('chart', true);
+
+  //var chart = containerEl.select('.chart');
+  console.log('CHART', chart);
+
+  chart.append('g')
+            .classed('x axis', true)
+            .attr('transform', 'translate(' + 0 + ',' + h + ')');
+  chart.append('g')
+            .classed('y axis', true);
+
+  chart.append('g').classed('barGroup', true);
+  chart.selectAll('.brush').remove();
+  chart.selectAll('.selected').classed('selected', false);
+  
+
+  chart.append('g')
+            .classed('brush', true)
+            //.attr('pointer-events', 'auto')
+            .call(brush)
+            .on('mousemove', function(records) {
+              var mouse = d3.mouse(this);
+              var domain = x.domain(),
+                  range = x.range();
+              var xLabel = domain[d3.bisect(range, mouse[0]) - 1];
+              
+              var d = records.filter(function(item) {
+                return xData(item) === xLabel;
+              })[0];
+
+              //var yValue = d.y
+
+              tip
+                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>frequency: </label>'+formatNumber(d.y)+'</span>');
+              tip.transition().duration(100)
+                .style('left',  x(xData(d)) + x.rangeBand()*0.83 + 'px')
+                .style('bottom', height -  y(yData(d)) + 20 + 'px')
+                .style('opacity', 0.9);
+
+
+              
+            })
+            .on('mouseout', function(d) {
+              tip.transition().duration(100)
+                .style('opacity', 0);
+            })
+          .selectAll('rect')
+            .attr('height', h);
+
+  d3.selectAll(".brush .resize").append("path").attr("d", resizePath);
+
+  
+ 
+  //chart.call(brush);
+
+  //brush.extent([0,width], [0, height]);
+
+
+  var tip =  containerEl.append('div').attr('class','tip');
+
+  var bars = chart.select('.barGroup').selectAll('.bar').data(data);
+
+  //console.log('BAR', bars);
+
+  bars.enter()
+        .append('rect')
+          .classed('bar', true)
+          .attr('x', function(d, i) { return x(xData(d)); }) // start here for object constancy
+          .attr('width', x.rangeBand())
+          .attr('y', h)
+          .attr('height', 0)
+          .attr("pointer-events", "all")
+          .on('mouseover', function(d, i) {
+            //doesn't work with brush
+            /*
+            console.log('on ', d, i, x(i));
+            tip
+              .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
+              .style('bottom', height -  y(d.y) + 20 + 'px')
+              //.style('width', x.rangeBand() + 'px')
+              .html(d.hover ? d.hover : '<div class="title">'+d.x+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
+            tip.transition().duration(300).style('opacity', 0.9);
+            */
+          })
+          .on('mouseout', function(d) {
+            tip.html('');
+            tip.style('opacity', 0);
+
+          });
+
+  bars.transition()
+        .duration(duration)
+          .attr('width', x.rangeBand())
+          .attr('x', function(d, i) { return x(xData(d)); })
+          .attr('y', function(d, i) { return y(yData(d)); })
+          .attr('height', function(d, i) { return h - y(yData(d)); });
 
   bars.exit()
         .transition()
@@ -360,7 +602,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
       CollectionList(Object.keys(json), '#collections')
 
       console.log('vizData', vizData);
-
+/*
       var countryData = _.map(vizData.country_data, function(item) {
         return {
           x: item.name,
@@ -406,8 +648,48 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
      var dateData = mapDateData(vizData, interval);
      HistChart(dateData, '#dates');
+*/
 
+     var collDates = [];
 
+     for(var key in json) {
+      console.log('KEY',key);
+      if(key!=='frus') {
+        continue;
+      }
+       //_.merge(collDates, json[key].date_data);
+
+       // _.merge(collDates, json[key].date_data, function(objectValue, sourceValue, key, object, source) {
+       //    //console.log(d);
+       //    var merged = {};
+       //    if() {
+
+       //    }
+       // })
+      
+      var newDates = json[key].date_data;
+      newDates.forEach(function(d) {
+        if(!d.month) {
+          return;
+        }
+        var thisMonth = _.filter(collDates, function(dd) { return dd.month===d.month} )[0];
+        //console.log(d.month, thisMonth);
+        if(!thisMonth) {
+          thisMonth = {
+            month: d.month
+          };
+          collDates.push(thisMonth);
+        }
+        thisMonth[key] = d.doc_count;
+
+      })
+
+      console.log('collDates', collDates.length, collDates);
+
+     }
+     console.log('HERE');
+
+     StackedHistChart(collDates, '#colldates');
      
 /*
 
