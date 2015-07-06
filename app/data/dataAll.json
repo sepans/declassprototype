@@ -116,10 +116,6 @@
       ],
       "date_data":[  
          {  
-            "doc_count":6728,
-            "month":null
-         },
-         {  
             "doc_count":820,
             "month":"1954-05"
          },
@@ -1933,10 +1929,6 @@
          }
       ],
       "date_data":[  
-         {  
-            "doc_count":10554,
-            "month":null
-         },
          {  
             "doc_count":1153,
             "month":"1967-06"

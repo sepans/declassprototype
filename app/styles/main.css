@@ -231,3 +231,11 @@ h3 {
   width: 100%;
   text-align: center;
 }
+
+.data0 {
+  fill: #FF0000;
+}
+
+.data2 {
+  fill: #00FF00;
+}

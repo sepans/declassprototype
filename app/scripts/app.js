@@ -371,15 +371,26 @@ function StackedHistChart(data, container) {
 console.log('STACKHIST');
   
 var margin = {top: 0, bottom: 50, left: 0, right: 40},
-      width = 700,
+      width = 1000,
       height = 400,
       duration = 500,
       brush = d3.svg.brush();
 
   //var formatNumber = d3.format("0,000");
+  
+  //TODO to be replaced by total.
+  var yData = function(d) { return d.total ? d.total : 0; };
 
-  var yData = function(d) { return d.frus; }
-  var xData = function(d) { return d.month; }
+  var yDatas = [function(d) { return d.frus ? d.frus : 0; },
+   function(d) { return d.ddrs ? d.ddrs : 0; },
+   function(d) { return d.kissinger ? d.kissinger : 0; }
+   ];
+  var xData = function(d) { return d.month; };
+
+  data.forEach(function(d) {
+    var y0 = 0;
+    //d.total = d.ages[d.ages.length - 1].y1;
+  });  
 
 
   margin.left = formatNumber(d3.max(data, yData)).length * 14;
@@ -395,11 +406,14 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
   y.domain([0, d3.max(data, yData)]);
 
-  console.log(data.map(xData));
+
+  console.log(y.domain(), data.map(xData));
   
   x.domain(data.map(xData));
 
-  //console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
+ // console.log(x.domain())
+
+  console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
 
 
   var xAxis = d3.svg.axis()
@@ -479,7 +493,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
               //var yValue = d.y
 
               tip
-                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>frequency: </label>'+formatNumber(d.y)+'</span>');
+                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>frequency: </label>'+formatNumber(yData(d))+'</span>');
               tip.transition().duration(100)
                 .style('left',  x(xData(d)) + x.rangeBand()*0.83 + 'px')
                 .style('bottom', height -  y(yData(d)) + 20 + 'px')
@@ -510,38 +524,44 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
   //console.log('BAR', bars);
 
-  bars.enter()
-        .append('rect')
+  var bargs = bars.enter()
+        .append('g')
           .classed('bar', true)
-          .attr('x', function(d, i) { return x(xData(d)); }) // start here for object constancy
+          .attr('transform', function(d, i) { return 'translate('+x(xData(d))+', 0)'; }) // start here for object constancy
           .attr('width', x.rangeBand())
-          .attr('y', h)
-          .attr('height', 0)
-          .attr("pointer-events", "all")
-          .on('mouseover', function(d, i) {
-            //doesn't work with brush
-            /*
-            console.log('on ', d, i, x(i));
-            tip
-              .style('left',  x(d.x) + x.rangeBand()*0.83 + 'px')
-              .style('bottom', height -  y(d.y) + 20 + 'px')
-              //.style('width', x.rangeBand() + 'px')
-              .html(d.hover ? d.hover : '<div class="title">'+d.x+'</div>'+'<span><label>count: </label>'+d.y+'</span>');
-            tip.transition().duration(300).style('opacity', 0.9);
-            */
-          })
-          .on('mouseout', function(d) {
-            tip.html('');
-            tip.style('opacity', 0);
+          .attr('y', 0)
+          .attr('height', h)
 
-          });
+    var bars0 = bargs.append('rect')
+          .classed('data0', true)
+          .attr('width', x.rangeBand())
 
-  bars.transition()
+    var bars1 = bargs.append('rect')
+          .classed('data1', true)
+          .attr('width', x.rangeBand())
+
+    var bars2 = bargs.append('rect')
+          .classed('data1', true)
+          .attr('width', x.rangeBand())
+
+  bars0.transition()
         .duration(duration)
-          .attr('width', x.rangeBand())
-          .attr('x', function(d, i) { return x(xData(d)); })
-          .attr('y', function(d, i) { return y(yData(d)); })
-          .attr('height', function(d, i) { return h - y(yData(d)); });
+          //.attr('x', function(d, i) { return x(xData(d)); })
+          .attr('y', function(d, i) { return y(yDatas[0](d)); })
+          .attr('height', function(d, i) { return h - y(yDatas[0](d)); });
+
+  bars1.transition()
+        .duration(duration)
+          //.attr('x', function(d, i) { return x(xData(d)); })
+          .attr('y', function(d, i) { return y(yDatas[1](d))  })
+          .attr('height', function(d, i) { return h - y(yDatas[1](d)) ; });
+
+
+  bars2.transition()
+        .duration(duration)
+          //.attr('x', function(d, i) { return x(xData(d)); })
+          .attr('y', function(d, i) { return y(yDatas[2](d))  })
+          .attr('height', function(d, i) { return h - y(yDatas[2](d)) ; });
 
   bars.exit()
         .transition()
@@ -587,7 +607,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
     
     data.forEach(function(d) {
       if (extent[0] <= x(d.x) && x(d.x) + x.rangeBand() <= extent[1])
-        sum += d.y;
+        sum += yData(d);
     });
     sumDiv.text('Selected Total: ' + formatNumber(sum));
   }  
@@ -655,7 +675,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
      for(var key in json) {
       console.log('KEY',key);
       if(key!=='frus') {
-        continue;
+        //continue;
       }
        //_.merge(collDates, json[key].date_data);
 
@@ -676,10 +696,12 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
         //console.log(d.month, thisMonth);
         if(!thisMonth) {
           thisMonth = {
-            month: d.month
+            month: d.month,
+            total: 0
           };
           collDates.push(thisMonth);
         }
+        thisMonth.total = thisMonth.total + d.doc_count;
         thisMonth[key] = d.doc_count;
 
       })
@@ -711,7 +733,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
       //console.log(data);
       topicData = _.sortBy(topicData, 'y');
       topicData.reverse();
-      HistChart(topicData, '#topics');
+    //  HistChart(topicData, '#topics');
 
 
   });
