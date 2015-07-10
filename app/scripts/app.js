@@ -365,7 +365,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
 
 
-function StackedHistChart(data, container) {
+function StackedHistChart(data, datapointKeys, container) {
  // var data = randomizeData(20, Math.random()*100000);
 
 console.log('STACKHIST');
@@ -404,16 +404,16 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
   var y = d3.scale.linear()
               .range([h, 0]);
 
-  y.domain([0, d3.max(data, yData)]);
+//  y.domain([0, d3.max(data, yData)]);
 
 
-  console.log(y.domain(), data.map(xData));
+  //console.log(y.domain(), data.map(xData));
   
   x.domain(data.map(xData));
 
  // console.log(x.domain())
 
-  console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
+  //console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
 
 
   var xAxis = d3.svg.axis()
@@ -422,6 +422,21 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
       yAxis = d3.svg.axis()
                 .scale(y)
                 .orient('left');
+
+
+  var color = d3.scale.ordinal()
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+  color.domain(datapointKeys.filter(function(key) { return key !== "month"; }));
+
+  data.forEach(function(d) {
+        var y0 = 0;
+        d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+        d.total = d.ages[d.ages.length - 1].y1;
+  });
+  console.log(data[0]);
+
+  y.domain([0, d3.max(data, function(d) { return d.total;})]);
 
   //display 15 chart labels at most.
   if(data.length>15) {
@@ -492,8 +507,15 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
               //var yValue = d.y
 
+              var itemsHTML = '';
+              color.domain().forEach(function(key) {
+                itemsHTML += '<div><label>'+key.toUpperCase()+':</label> '+formatNumber(d[key])+'</div>';  
+              });
+              
+              var tipHTML = d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span>'+itemsHTML+'</span>';
+
               tip
-                .html(d.hover ? d.hover : '<div class="title">'+xLabel+'</div>'+'<span><label>frequency: </label>'+formatNumber(yData(d))+'</span>');
+                .html(tipHTML);
               tip.transition().duration(100)
                 .style('left',  x(xData(d)) + x.rangeBand()*0.83 + 'px')
                 .style('bottom', height -  y(yData(d)) + 20 + 'px')
@@ -532,6 +554,14 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
           .attr('y', 0)
           .attr('height', h)
 
+bargs.selectAll("rect")
+      .data(function(d) { return d.ages; })
+    .enter().append("rect")
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.y1); })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+      .style("fill", function(d) { return color(d.name); });
+/*
     var bars0 = bargs.append('rect')
           .classed('data0', true)
           .attr('width', x.rangeBand())
@@ -554,15 +584,15 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
         .duration(duration)
           //.attr('x', function(d, i) { return x(xData(d)); })
           .attr('y', function(d, i) { return y(yDatas[1](d))  })
-          .attr('height', function(d, i) { return h - y(yDatas[1](d)) ; });
+          .attr('height', function(d, i) { return Math.abs(y(yDatas[0](d)) - y(yDatas[1](d))) ; });
 
 
   bars2.transition()
         .duration(duration)
           //.attr('x', function(d, i) { return x(xData(d)); })
           .attr('y', function(d, i) { return y(yDatas[2](d))  })
-          .attr('height', function(d, i) { return h - y(yDatas[2](d)) ; });
-
+          .attr('height', function(d, i) { return y(yDatas[1](d)) - y(yDatas[2](d)) ; });
+*/
   bars.exit()
         .transition()
             .duration(duration)
@@ -672,11 +702,13 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
      var collDates = [];
 
+     var emptyMonth  = {};
+     Object.keys(json).forEach(function(key) {
+      emptyMonth[key] = 0;
+     });
+
      for(var key in json) {
-      console.log('KEY',key);
-      if(key!=='frus') {
-        //continue;
-      }
+      //console.log('KEY',key);
        //_.merge(collDates, json[key].date_data);
 
        // _.merge(collDates, json[key].date_data, function(objectValue, sourceValue, key, object, source) {
@@ -695,23 +727,29 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
         var thisMonth = _.filter(collDates, function(dd) { return dd.month===d.month} )[0];
         //console.log(d.month, thisMonth);
         if(!thisMonth) {
-          thisMonth = {
-            month: d.month,
-            total: 0
-          };
+          thisMonth = _.clone(emptyMonth);
+          
+          thisMonth.month = d.month,
+          //console.log('thisM', thisMonth);
           collDates.push(thisMonth);
         }
-        thisMonth.total = thisMonth.total + d.doc_count;
+        //thisMonth.total = thisMonth.total + d.doc_count;
         thisMonth[key] = d.doc_count;
+      });
 
-      })
+      //collDates = collDates.reverse();
 
-      console.log('collDates', collDates.length, collDates);
+      //console.log('collDates', collDates.length, collDates);
 
-     }
-     console.log('HERE');
+     } 
+     collDates = collDates.sort(function(a,b) {
+        return new Date(a.month) - new Date(b.month);
+      });
+      
+      
 
-     StackedHistChart(collDates, '#colldates');
+
+     StackedHistChart(collDates, Object.keys(json), '#colldates');
      
 /*
 
