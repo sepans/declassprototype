@@ -22,6 +22,9 @@ section {
   padding: 5px;
   position: relative;
 }
+#colldates {
+  margin-left: -80px;
+}
 
 h3 {
   margin: 5px 0;
