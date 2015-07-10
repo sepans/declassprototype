@@ -371,8 +371,8 @@ function StackedHistChart(data, datapointKeys, container) {
 console.log('STACKHIST');
   
 var margin = {top: 0, bottom: 50, left: 0, right: 40},
-      width = 1000,
-      height = 400,
+      width = 900,
+      height = 300,
       duration = 500,
       brush = d3.svg.brush();
 
@@ -387,10 +387,6 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
    ];
   var xData = function(d) { return d.month; };
 
-  data.forEach(function(d) {
-    var y0 = 0;
-    //d.total = d.ages[d.ages.length - 1].y1;
-  });  
 
 
   margin.left = formatNumber(d3.max(data, yData)).length * 14;
@@ -404,16 +400,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
   var y = d3.scale.linear()
               .range([h, 0]);
 
-//  y.domain([0, d3.max(data, yData)]);
-
-
-  //console.log(y.domain(), data.map(xData));
-  
   x.domain(data.map(xData));
-
- // console.log(x.domain())
-
-  //console.log(x.domain(), d3.min(x.domain()), d3.max(x.domain()), x.range());
 
 
   var xAxis = d3.svg.axis()
@@ -425,7 +412,7 @@ var margin = {top: 0, bottom: 50, left: 0, right: 40},
 
 
   var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+        .range(['rgb(237,248,177)','rgb(127,205,187)','rgb(44,127,184)'].reverse());
 
   color.domain(datapointKeys.filter(function(key) { return key !== "month"; }));
 
@@ -652,7 +639,7 @@ bargs.selectAll("rect")
       CollectionList(Object.keys(json), '#collections')
 
       console.log('vizData', vizData);
-/*
+
       var countryData = _.map(vizData.country_data, function(item) {
         return {
           x: item.name,
@@ -698,7 +685,7 @@ bargs.selectAll("rect")
 
      var dateData = mapDateData(vizData, interval);
      HistChart(dateData, '#dates');
-*/
+
 
      var collDates = [];
 
@@ -751,10 +738,6 @@ bargs.selectAll("rect")
 
      StackedHistChart(collDates, Object.keys(json), '#colldates');
      
-/*
-
-
-*/
 
 
 
