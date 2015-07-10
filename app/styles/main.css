@@ -54,7 +54,7 @@ h3 {
   fill: steelblue;
 }
 .selected {
-  fill: #78C656;
+  fill: #7fcdbb;
 }
 
 .tip {
@@ -230,4 +230,15 @@ h3 {
 .collection h3 {
   width: 100%;
   text-align: center;
+}
+
+.data0 {
+  fill: #FF0000;
+}
+
+.data1 {
+  fill: #0000FF;
+}
+.data2 {
+  fill: #00FF00;
 }
